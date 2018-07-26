@@ -41,12 +41,15 @@ Vue.use(vueSliceUploader)
 | suffix     | 文件后缀名   |   String  | * |
 | action     | 文件上传请求路径|String||
 | unique     | 是否对文件进行md5，保证文件唯一性，比较耗时|Boolean|**false**
+| headers    | 设置请求头 | Object | 需要服务端开启`Access-Control-Allow-Headers` |
+| formData   | 设置formdata提交的参数 | Object | {}| 
 
 
 ### Methods
 
-| 属性       | 方法  | 参数 |
+| 方法名       | 描述  | 参数 |
 | --------   | -----  | ----  |
+| change | 文件输入框变化监听|`function(files)`|
 | on-progress | 文件上传进程监听|`function(file,{code,percent,msg})`|
 | on-complete | 文件上传完成|`function(file){}`|
 | on-speed    | 文件上传速率监听 | `function(file,speed){}`

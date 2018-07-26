@@ -28,6 +28,18 @@ export default {
       type: Number,
       default: Math.pow(1024, 2) * 5
     },
+    formData: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
+    headers: {
+      type: Object,
+      default: () => {
+        return {}
+      }
+    },
     auto: {
       type: Boolean,
       default: true
@@ -80,6 +92,8 @@ export default {
           url: this.action,
           unique: this.unique,
           chunkSize: this.chunkSize,
+          formData: this.formData,
+          headers: this.headers,
           progress: (code, percent, msg) => {
             this.$emit('on-progress', file, {
               code, percent, msg
@@ -97,7 +111,6 @@ export default {
       })
     },
     start () {
-      console.log(this.$refs.button)
       this.$refs.file.click();
     }
   }

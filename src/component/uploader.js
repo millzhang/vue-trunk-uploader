@@ -20,6 +20,8 @@ export default class FileUploader {
     this.opt = Object.assign(
       {
         chunkSize: Math.pow(1024, 2) * 5,
+        formData: {},
+        headers: {},
         unique: false, //是否对文件使用sparkmd5,不适用的无读取过程，速度快，但无法保证文件唯一性
         url: '/upload',
         progress: function() {},
@@ -199,22 +201,28 @@ export default class FileUploader {
         nextSliceSize = (index + 1) * this.opt.chunkSize
       let endSliceSize =
         nextSliceSize >= this.file.size ? this.file.size : nextSliceSize
-      console.log(
-        this.file.name,
-        index,
-        `${startSliceSize / 1024 / 1024}MB`,
-        `${endSliceSize / 1024 / 1024}MB`
-      )
+      // console.log(
+      //   this.file.name,
+      //   index,
+      //   `${startSliceSize / 1024 / 1024}MB`,
+      //   `${endSliceSize / 1024 / 1024}MB`
+      // )
       let form = new FormData()
-      form.append('data', this.file.slice(startSliceSize, endSliceSize))
+      form.append('file', this.file.slice(startSliceSize, endSliceSize))
       form.append('fileName', this.file.name)
       form.append('total', this.chunks) //总片数
       form.append('index', Number(index + 1)) //当前是第几片
       form.append('fileMd5Value', this.file.md5)
+      Object.keys(this.opt.formData).map(key => {
+        form.append(key, this.opt.formData[key])
+      })
       var xhr = new XMLHttpRequest(),
         ot,
         oloaded
       xhr.open('POST', this.opt.url, true)
+      Object.keys(this.opt.headers).map(key => {
+        xhr.setRequestHeader(key, this.opt.headers[key])
+      })
       xhr.onload = e => {
         let target = e.target
         if (target.status == 200) {
