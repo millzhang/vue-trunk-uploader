@@ -1,7 +1,7 @@
 {
   "name": "vue-slice-uploader",
   "description": "slice file uploader component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "millzhang <876753183@qq.com>",
   "license": "MIT",
   "private": false,

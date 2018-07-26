@@ -33,11 +33,11 @@ Vue.use(vueSliceUploader)
 ### Attributes
 
 | 属性       | 描述  | 类型  |  值  |
-| --------   | -----  | ----  |
-| chunkSize  | 切片的大小       | Number |   单位是Byte，默认是5M，即1024*1024*5     |
+| --------   | -----  | ----  |--- |
+| chunkSize  | 切片的大小       | Number |   单位是Byte，默认是5M，即1024x1024x5     |
 | auto       | 是否自动上传    |  Boolean   |   **true**   |
 | multiple   | 是否可多文件上传   |   Boolean   |  **false**  |
-| showButton | 是否显示上传按钮，若不显示则需手动调用start方法| Boolean|**true**
+| showButton | 是否显示上传按钮，若不显示则需手动调用start方法| Boolean|**true**|
 | suffix     | 文件后缀名   |   String  | * |
 | action     | 文件上传请求路径|String||
 | unique     | 是否对文件进行md5，保证文件唯一性，比较耗时|Boolean|**false**
